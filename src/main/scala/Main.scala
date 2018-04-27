@@ -1,14 +1,15 @@
+import org.apache.log4j.{Level, Logger}
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.graphx.{GraphLoader, PartitionStrategy}
 
 object Main {
 
   def main(args: Array[String]) {
+    Logger.getRootLogger.setLevel(Level.ERROR)
+
     val sc = new SparkContext(new SparkConf()
       .setMaster("local")
       .setAppName("Vertex Count"))
-
-    sc.setLogLevel("ERROR")
 
     val graph = GraphLoader.edgeListFile(sc, "data/followers.txt", true)
       .partitionBy(PartitionStrategy.RandomVertexCut)
