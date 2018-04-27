@@ -29,5 +29,5 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 ADD . /app
 
-# Run app.py when the container launches
+# Run jar file when the container launches
 CMD spark-submit --master local target/triangle-count-0.1.0-jar-with-dependencies.jar
